@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>FTP Search</title>
+	<style type="text/css">
+		body, html {
+			overflow: hidden;
+			padding: 0;
+			margin: 0;
+		}
+		#searchResultFrame {
+			width: 100vw;
+			height: 100vh;
+			border: none;
+			margin: none;
+			padding: none;
+		}
+		#searchBar {
+			background: #e5e5e5;
+		}
+		
+	</style>
+</head>
+<body>
+	<center id="searchBar">
+		<h1>FTP Search</h1>
+		<form>
+			<input type="text" id="searchTextInput"></input>
+			<button id="searchButton">Search</button>
+		</form>
+	</center>
+	<script type="text/javascript">
+		document.getElementById("searchButton").addEventListener("click", function(event){
+			event.preventDefault();
+			search();
+		});
+		function search(){
+			searchText = document.getElementById("searchTextInput").value;
+			console.log("Searching for " + searchText);
+			url = "http://www.google.com/search?q="+searchText+" -inurl:(htm|html|php|pls|txt) intitle:index.of \"last modified\"";
+			var win = window.open(url, '_blank');
+			if (win) {
+			    //Browser has allowed it to be opened
+			    win.focus();
+			} else {
+			    //Browser has blocked it
+			    alert('Please allow popups for this website');
+			}
+		}
+	</script>
+</body>
+</html>
